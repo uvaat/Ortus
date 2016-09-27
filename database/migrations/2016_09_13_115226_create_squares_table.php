@@ -18,6 +18,7 @@ class CreateSquaresTable extends Migration
             $table->text('name');
             $table->float('lat');
             $table->float('lng');
+            $table->softDeletes();
             $table->timestamps();
         });
 

@@ -16,8 +16,15 @@
 			</div>
         @endif
 
-		<form role="form" method="POST" action="{{ url('/admin/square') }}">
+        @if(Session::has('error'))
+			<div class="alert alert-error" role="alert">
+				{{Session::get('error')}}
+			</div>
+        @endif
 
+		<form role="form" method="POST" action="{{ route('admin::square.update', ['id' => $square->id]) }}">
+	
+			{{ method_field('PUT') }}
             {{ csrf_field() }}
 
 			<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

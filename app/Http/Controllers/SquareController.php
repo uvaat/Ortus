@@ -16,7 +16,7 @@ class SquareController extends Controller
      */
     public function index()
     {
-        $squares = Square::paginate(2);
+        $squares = Square::paginate(10);
         return view('square.index', ['squares' => $squares]);
 
     }
@@ -68,7 +68,8 @@ class SquareController extends Controller
      */
     public function show($id)
     {
-        //
+        $square = Square::find($id);
+        return view('square.show', ['square' => $square]);
     }
 
     /**
@@ -92,7 +93,30 @@ class SquareController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'lat' => 'required',
+            'lng' => 'required',
+        ]);
+
+        $square = Square::find($id);
+
+        if(!$square){
+
+            $request->session()->flash('error', 'Le square n\'éxiste pas');
+            return redirect()->back();
+
+        }
+
+        $square->name = $request->name;
+        $square->lat = str_replace(',', '.', $request->lat);
+        $square->lng = str_replace(',', '.', $request->lng);
+
+        $square->save();
+
+        $request->session()->flash('success', 'Le square a bien été modifié');
+        return redirect()->back();
+
     }
 
     /**
@@ -103,6 +127,7 @@ class SquareController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $square = Square::find($id)->delete();
+        return redirect()->back();
     }
 }

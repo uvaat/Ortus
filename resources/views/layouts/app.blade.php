@@ -83,9 +83,8 @@
 
             <div class="col-md-2">
                 <ul class="nav nav-pills nav-stacked">
-                <li>{{Request::segment(2)}}</li>
-                    <li role="presentation" class="{{(Route::is('admin::dashbord')? 'active' : '')}}"><a href="{{route('admin::dashbord')}}">Dashbord</a></li>
-                    <li role="presentation" class="{{(Route::is('admin::square.index')? 'active' : '')}}"><a href="{{route('admin::square.index')}}">Squares</a></li>
+                    <li role="presentation" class="{{(Route::is('admin::dashbord'))? 'active' : ''}}"><a href="{{route('admin::dashbord')}}">Dashbord</a></li>
+                    <li role="presentation" class="{{(Request::segment(2) == 'square')? 'active' : ''}}"><a href="{{route('admin::square.index')}}">Squares</a></li>
                 </ul>
             </div>
             <div class="col-md-10">

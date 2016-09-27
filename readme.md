@@ -8,6 +8,6 @@
 
 * [x] Commancer le backoffice
 * [x] Ajouter un parc
-* [ ] Modifier un parc
-* [ ] Supprimer un parc
-* [ ] Affichier un parc
+* [x] Modifier un parc
+* [x] Supprimer un parc
+* [x] Affichier un parc
