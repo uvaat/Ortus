@@ -10,11 +10,10 @@ class Square extends Model
 
 	use SoftDeletes;
 
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
     protected $dates = ['deleted_at'];
+
+    public function city() {
+        return $this->hasOne('App\City', 'id', 'city_id');
+    }
 
 }

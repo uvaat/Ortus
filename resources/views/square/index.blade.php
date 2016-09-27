@@ -19,6 +19,7 @@
 		<tr>
 			<th></th>
 			<th>Nom</th>
+			<th>Ville</th>
 			<th>Latitude</th> 
 			<th>Longitude</th>
 			<th></th>
@@ -29,6 +30,7 @@
 			<tr>
 				<td><b>#{{ $square->id }}</b></td>
 				<td><a class="btn btn-link" href="{{ route('admin::square.show', ['id' => $square->id]) }}">{{ $square->name }}</a></td>
+				<td>{{ $square->city->name }}</td> 
 				<td>{{ $square->lat }}</td> 
 				<td>{{ $square->lng }}</td>
 				<th>

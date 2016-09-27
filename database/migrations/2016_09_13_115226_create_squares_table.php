@@ -12,14 +12,32 @@ class CreateSquaresTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
+
+        Schema::create('cities', function (Blueprint $table) {
+
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+
+        });
+
         Schema::create('squares', function (Blueprint $table) {
+
             $table->increments('id');
             $table->text('name');
             $table->float('lat');
             $table->float('lng');
+
+            $table->integer('city_id')->unsigned();
+            $table->foreign('city_id')
+                ->references('id')
+                ->on('cities')
+                ->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
+
         });
 
     }
@@ -32,5 +50,6 @@ class CreateSquaresTable extends Migration
     public function down()
     {
         Schema::dropIfExists('squares');
+        Schema::dropIfExists('cities');
     }
 }

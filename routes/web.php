@@ -23,6 +23,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin::'], f
 	 */
 	Route::resource('square', 'SquareController');
 
+	/**
+	 * Villes
+	 */
+	Route::resource('city', 'CityController');
+
 });
 
 Auth::routes();

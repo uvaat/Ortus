@@ -11,3 +11,6 @@
 * [x] Modifier un parc
 * [x] Supprimer un parc
 * [x] Affichier un parc
+* [ ] Ajouter les villes
+* [ ] - CRUD ville
+* [ ] - Modifier les parcs pour leur attribuer une ville
