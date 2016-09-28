@@ -13,6 +13,10 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -83,8 +87,9 @@
 
             <div class="col-md-2">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation" class="{{(Route::is('admin::dashbord'))? 'active' : ''}}"><a href="{{route('admin::dashbord')}}">Dashbord</a></li>
-                    <li role="presentation" class="{{(Request::segment(2) == 'square')? 'active' : ''}}"><a href="{{route('admin::square.index')}}">Squares</a></li>
+                    <li class="{{(Route::is('admin::dashbord'))? 'active' : ''}}"><a href="{{route('admin::dashbord')}}">Dashbord</a></li>
+                    <li class="{{(Request::segment(2) == 'square')? 'active' : ''}}"><a href="{{route('admin::square.index')}}">Squares</a></li>
+                    <li class="{{(Request::segment(2) == 'city')? 'active' : ''}}"><a href="{{route('admin::city.index')}}">Villes</a></li>
                 </ul>
             </div>
             <div class="col-md-10">

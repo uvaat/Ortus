@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Square;
+use App\City;
 
 use App\Http\Requests;
 
@@ -28,7 +29,8 @@ class SquareController extends Controller
      */
     public function create()
     {
-        return response()->view('square.create');
+        $cities = City::all();
+        return response()->view('square.create', ['cities' => $cities]);
     }
 
 
@@ -45,15 +47,24 @@ class SquareController extends Controller
             'name' => 'required|max:255',
             'lat' => 'required',
             'lng' => 'required',
+            'city' => 'required',
         ]);
 
-        $square = new Square;
+        $square = new Square();
+        $city = City::find($request->city);
+
+        if(!$city){
+
+            $request->session()->flash('error', 'La ville n\'éxiste pas');
+            return redirect()->back();
+
+        }
 
         $square->name = $request->name;
         $square->lat = $request->lat;
         $square->lng = $request->lng;
 
-        $square->save();
+        $city->squares()->save($square);
 
         $request->session()->flash('success', 'Le square a bien été ajouté');
         return redirect()->back();
@@ -81,7 +92,8 @@ class SquareController extends Controller
     public function edit($id)
     {
         $square = Square::find($id);
-        return view('square.edit', ['square' => $square]);
+        $cities = City::all();
+        return view('square.edit', ['square' => $square, 'cities' => $cities]);
     }
 
     /**
@@ -97,9 +109,18 @@ class SquareController extends Controller
             'name' => 'required|max:255',
             'lat' => 'required',
             'lng' => 'required',
+            'city' => 'required',
         ]);
 
         $square = Square::find($id);
+        $city = City::find($request->city);
+        
+        if(!$city){
+
+            $request->session()->flash('error', 'La ville n\'éxiste pas');
+            return redirect()->back();
+
+        }
 
         if(!$square){
 
@@ -113,6 +134,7 @@ class SquareController extends Controller
         $square->lng = str_replace(',', '.', $request->lng);
 
         $square->save();
+        $city->squares()->save($square);
 
         $request->session()->flash('success', 'Le square a bien été modifié');
         return redirect()->back();

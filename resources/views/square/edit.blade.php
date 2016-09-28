@@ -66,6 +66,24 @@
 
 			</div>
 
+			<div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+
+				<label for="lat">Ville</label><br>
+				
+				<select name="city" id="city" class="selectpicker">
+					@foreach ($cities as $city)
+						<option {{($city->id == $square->city->id)? 'selected' : ''}} value="{{$city->id}}">{{$city->name}}</option>
+					@endforeach
+				</select>
+
+				@if ($errors->has('city'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('city') }}</strong>
+                    </span>
+                @endif
+
+			</div>
+
 			<button type="submit" class="btn btn-default">Enregistrer</button>
 
 		</form>

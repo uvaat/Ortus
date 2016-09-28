@@ -27,7 +27,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return response()->view('city.create');
     }
 
     /**
@@ -38,7 +38,19 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        $city = new City();
+        $city->name = ucfirst($request->name);
+
+        $city->save();
+
+        $request->session()->flash('success', 'La ville a bien été ajouté');
+        return redirect()->back();
+
     }
 
     /**
@@ -49,7 +61,8 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        //
+        $city = City::find($id);
+        return view('city.show', ['city' => $city]);
     }
 
     /**
@@ -60,7 +73,8 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $city = City::find($id);
+        return view('city.edit', ['city' => $city]);
     }
 
     /**
@@ -72,7 +86,26 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        $city = City::find($id);
+
+        if(!$city){
+
+            $request->session()->flash('error', 'La ville n\'éxiste pas');
+            return redirect()->back();
+
+        }
+
+        $city->name = ucfirst($request->name);
+
+        $city->save();
+
+        $request->session()->flash('success', 'La ville a bien été ajouté');
+        return redirect()->back();
+
     }
 
     /**
@@ -83,6 +116,7 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $square = City::find($id)->delete();
+        return redirect()->back();
     }
 }

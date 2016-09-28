@@ -30,7 +30,7 @@
 			<tr>
 				<td><b>#{{ $square->id }}</b></td>
 				<td><a class="btn btn-link" href="{{ route('admin::square.show', ['id' => $square->id]) }}">{{ $square->name }}</a></td>
-				<td>{{ $square->city->name }}</td> 
+				<td><a href="{{ route('admin::city.show', ['id' => $square->city->id]) }}" class="btn btn-link">{{ $square->city->name }}</a></td> 
 				<td>{{ $square->lat }}</td> 
 				<td>{{ $square->lng }}</td>
 				<th>

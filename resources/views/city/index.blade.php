@@ -11,7 +11,7 @@
     </div>
 
 	<div class="panel-body">
-		<a href="{{route('admin::city.create')}}" type="button" class="btn btn-primary">Ajouter une ville</a>
+		<a href="{{route('admin::city.create')}}" type="button" class="btn btn-primary">Ajouter une villes</a>
 	</div>
 
 	<table class="table table-striped">
@@ -23,15 +23,15 @@
 			<th></th>
 		</tr>
 
-		<!-- @foreach ($cities as $cities)
+		@foreach ($cities as $city)
 			<tr>
-				<td><b>#{{ $cities->id }}</b></td>
-				<td><a class="btn btn-link" href="{{ route('admin::cities.show', ['id' => $cities->id]) }}">{{ $cities->name }}</a></td>
+				<td><b>#{{ $city->id }}</b></td>
+				<td><a class="btn btn-link" href="{{ route('admin::city.show', ['id' => $city->id]) }}">{{ $city->name }}</a></td>
 				<th>
-					<a href="{{ route('admin::cities.edit', ['id' => $cities->id]) }}" class="btn btn-link">éditer</a>
+					<a href="{{ route('admin::city.edit', ['id' => $city->id]) }}" class="btn btn-link">éditer</a>
 				</th>
 				<th>
-					<form method="POST" action="{{route('admin::cities.destroy', ['id' => $cities->id])}}">
+					<form method="POST" action="{{route('admin::city.destroy', ['id' => $city->id])}}">
 						{{ method_field('DELETE') }}
 						{{ csrf_field() }}
 						<button type="submit" class="btn-danger btn btn-link">supprimer</button>
@@ -39,15 +39,15 @@
 				</th>
 			</tr>
     		
-		@endforeach -->
+		@endforeach
 
 	</table>
 	
-	<!-- @if ($cities->hasMorePages())
+	@if ($cities->hasMorePages())
 		<div class="panel-body">
 			{{ $cities->links() }}
 		</div>
-	@endif -->
+	@endif
 	
 </div>
 
