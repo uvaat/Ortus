@@ -12,7 +12,7 @@
 * [x] Supprimer un parc
 * [x] Affichier un parc
 * [x] Ajouter les villes
-* [ ] CRUD ville
+* [x] CRUD ville
 * [x] Modifier les parcs pour leur attribuer une ville
 
 ### V0.2
@@ -26,8 +26,8 @@
 
 #### Amenagement
 
-* [ ] Ajouter l'aménagement
-* [ ] CRUD amnégement
+* [x] Ajouter l'aménagement
+* [x] CRUD amnégement
 
 ### V0.3
 

@@ -6,7 +6,7 @@
 <div class="panel panel-default">
 	
     <div class="panel-heading">
-    	<h1 class="panel-title">{{$city->name}}</h1>
+    	<h1 class="panel-title">{{$city->name}} - {{$city->zip}}</h1>
     </div>
     <div class="panel-body">
     	<a href="{{ route('admin::city.edit', ['id' => $city->id]) }}" type="button" class="btn btn-primary">Éditer</a>

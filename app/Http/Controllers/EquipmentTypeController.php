@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\City;
+use App\EquipmentType;
 
 use App\Http\Requests;
 
-class CityController extends Controller
+class EquipmentTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::paginate(10);
-        return view('city.index', ['cities' => $cities]);
+        $equipments = EquipmentType::paginate(10);
+        return view('equipment-type.index', ['equipments' => $equipments]);
     }
 
     /**
@@ -27,7 +27,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return response()->view('city.create');
+        return response()->view('equipment-type.create');
     }
 
     /**
@@ -38,19 +38,16 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'name' => 'required|max:255',
-            'zip' => 'required'
         ]);
 
-        $city = new City();
-        $city->name = ucfirst($request->name);
-        $city->zip = $request->zip;
+        $equipment = new EquipmentType();
+        $equipment->name = ucfirst($request->name);
 
-        $city->save();
+        $equipment->save();
 
-        $request->session()->flash('success', 'La ville a bien été ajouté');
+        $request->session()->flash('success', 'Le type a bien été ajouté');
         return redirect()->back();
 
     }
@@ -63,8 +60,8 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        $city = City::find($id);
-        return view('city.show', ['city' => $city]);
+        $equipment = EquipmentType::find($id);
+        return view('equipment-type.show', ['equipment' => $equipment]);
     }
 
     /**
@@ -75,8 +72,8 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        $city = City::find($id);
-        return view('city.edit', ['city' => $city]);
+        $equipment = EquipmentType::find($id);
+        return view('equipment-type.edit', ['equipment' => $equipment]);
     }
 
     /**
@@ -90,26 +87,23 @@ class CityController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'zip' => 'required'
         ]);
 
-        $city = City::find($id);
+        $equipment = EquipmentType::find($id);
 
-        if(!$city){
+        if(!$equipment){
 
-            $request->session()->flash('error', 'La ville n\'éxiste pas');
+            $request->session()->flash('error', 'Le type d\'équipement n\'éxiste pas');
             return redirect()->back();
 
         }
 
-        $city->name = ucfirst($request->name);
-        $city->zip = $request->zip;
+        $equipment->name = ucfirst($request->name);
+        $equipment->save();
 
-        $city->save();
-
-        $request->session()->flash('success', 'La ville a bien été modifiée');
+        $request->session()->flash('success', 'Le type à bien été modifier');
         return redirect()->back();
-
+        
     }
 
     /**
@@ -120,7 +114,7 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        City::find($id)->delete();
+        EquipmentType::find($id)->delete();
         return redirect()->back();
     }
 }

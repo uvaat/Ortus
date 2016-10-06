@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Square;
 use App\City;
+use App\Equipment;
 
 use App\Http\Requests;
 
@@ -30,7 +31,11 @@ class SquareController extends Controller
     public function create()
     {
         $cities = City::all();
-        return response()->view('square.create', ['cities' => $cities]);
+        $equipments = Equipment::all();
+        return response()->view('square.create', [
+            'cities' => $cities,
+            'equipments' => $equipments
+            ]);
     }
 
 
@@ -51,8 +56,12 @@ class SquareController extends Controller
         ]);
 
         $square = new Square();
-        $city = City::find($request->city);
 
+        $square->name = $request->name;
+        $square->lat = $request->lat;
+        $square->lng = $request->lng;
+
+        $city = City::find($request->city);
         if(!$city){
 
             $request->session()->flash('error', 'La ville n\'éxiste pas');
@@ -60,11 +69,27 @@ class SquareController extends Controller
 
         }
 
-        $square->name = $request->name;
-        $square->lat = $request->lat;
-        $square->lng = $request->lng;
-
         $city->squares()->save($square);
+        
+        $square->save();
+
+        if($request->equipments){
+
+            foreach ($request->equipments as $equipmentId) {
+                
+                $equipment = Equipment::find($equipmentId);
+                if(!$equipment){
+                    
+                    $request->session()->flash('error', 'Un des équipements n\'éxiste pas');
+                    return redirect()->back();
+
+                }
+
+                $square->equipments()->attach($equipment);
+
+            }
+            
+        }
 
         $request->session()->flash('success', 'Le square a bien été ajouté');
         return redirect()->back();
@@ -93,7 +118,21 @@ class SquareController extends Controller
     {
         $square = Square::find($id);
         $cities = City::all();
-        return view('square.edit', ['square' => $square, 'cities' => $cities]);
+        $equipments = Equipment::all();
+        $equipmentIds = array();
+
+        if($square->equipments){
+            foreach ($square->equipments as $equipment) {
+                $equipmentIds[] = $equipment->id;
+            }
+        }
+
+        return view('square.edit', [
+            'square' => $square,
+            'cities' => $cities,
+            'equipmentIds' => $equipmentIds,
+            'equipments' => $equipments
+            ]);
     }
 
     /**
@@ -135,6 +174,26 @@ class SquareController extends Controller
 
         $square->save();
         $city->squares()->save($square);
+
+        $square->equipments()->detach();
+
+        if($request->equipments){
+
+            foreach ($request->equipments as $equipmentId) {
+                
+                $equipment = Equipment::find($equipmentId);
+                if(!$equipment){
+                    
+                    $request->session()->flash('error', 'Un des équipements n\'éxiste pas');
+                    return redirect()->back();
+
+                }
+
+                $square->equipments()->attach($equipment);
+
+            }
+            
+        }
 
         $request->session()->flash('success', 'Le square a bien été modifié');
         return redirect()->back();

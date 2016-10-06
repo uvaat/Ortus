@@ -57,6 +57,24 @@
 
 			</div>
 
+			<div class="form-group{{ $errors->has('equipments') ? ' has-error' : '' }}">
+				
+				<label for="lat">Equipment(s)</label><br>
+				
+				<select name="equipments[]" id="equipments" class="selectpicker" multiple>
+					@foreach ($equipments as $equipment)
+						<option value="{{$equipment->id}}">{{$equipment->name}}</option>
+					@endforeach
+				</select>
+
+				@if ($errors->has('equipments'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('equipments') }}</strong>
+                    </span>
+                @endif
+
+			</div>
+
 			<div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
 
 				<label for="lat">Ville</label><br>

@@ -90,6 +90,8 @@
                     <li class="{{(Route::is('admin::dashbord'))? 'active' : ''}}"><a href="{{route('admin::dashbord')}}">Dashbord</a></li>
                     <li class="{{(Request::segment(2) == 'square')? 'active' : ''}}"><a href="{{route('admin::square.index')}}">Squares</a></li>
                     <li class="{{(Request::segment(2) == 'city')? 'active' : ''}}"><a href="{{route('admin::city.index')}}">Villes</a></li>
+                    <li class="{{(Request::segment(2) == 'equipment-type')? 'active' : ''}}"><a href="{{route('admin::equipment-type.index')}}">Types d'équipement</a></li>
+                    <li class="{{(Request::segment(2) == 'equipment')? 'active' : ''}}"><a href="{{route('admin::equipment.index')}}">Équipement</a></li>
                 </ul>
             </div>
             <div class="col-md-10">

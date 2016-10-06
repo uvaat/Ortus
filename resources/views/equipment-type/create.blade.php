@@ -5,7 +5,7 @@
    
 <div class="panel panel-default">
 	
-    <div class="panel-heading">Ajouter une ville</div>
+    <div class="panel-heading">Ajouter un type d'équipement</div>
 	<div class="panel-body">
 		
 		@if(Session::has('success'))
@@ -14,7 +14,7 @@
 			</div>
         @endif
 
-		<form role="form" method="POST" action="{{ url('/admin/city') }}">
+		<form role="form" method="POST" action="{{ url('/admin/equipment-type') }}">
 
             {{ csrf_field() }}
 
@@ -30,20 +30,6 @@
                 @endif
 
 			</div>
-
-			<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-
-				<label for="name">Code postal</label>
-				<input type="text" class="form-control" id="zip" name="zip">
-
-				@if ($errors->has('zip'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('zip') }}</strong>
-                    </span>
-                @endif
-
-			</div>
-
 
 			<button type="submit" class="btn btn-default">Enregistrer</button>
 

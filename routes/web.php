@@ -28,6 +28,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin::'], f
 	 */
 	Route::resource('city', 'CityController');
 
+	/**
+	 * Type d'équipement
+	 */
+	Route::resource('equipment-type', 'EquipmentTypeController');
+
+	/**
+	 * Équipement
+	 */
+	Route::resource('equipment', 'EquipmentController');
+
 });
 
 Auth::routes();

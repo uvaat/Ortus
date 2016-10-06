@@ -22,6 +22,7 @@
 			<th>Ville</th>
 			<th>Latitude</th> 
 			<th>Longitude</th>
+			<th>Nombre d'équipements</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -33,6 +34,7 @@
 				<td><a href="{{ route('admin::city.show', ['id' => $square->city->id]) }}" class="btn btn-link">{{ $square->city->name }}</a></td> 
 				<td>{{ $square->lat }}</td> 
 				<td>{{ $square->lng }}</td>
+				<td>{{ count($square->equipments) }}</td>
 				<th>
 					<a href="{{ route('admin::square.edit', ['id' => $square->id]) }}" class="btn btn-link">éditer</a>
 				</th>

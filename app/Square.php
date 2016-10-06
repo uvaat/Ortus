@@ -16,4 +16,8 @@ class Square extends Model
         return $this->hasOne('App\City', 'id', 'city_id');
     }
 
+    public function equipments() {
+        return $this->belongsToMany('App\Equipment', 'equipments_squares', 'square_id', 'equipment_id');
+    }
+
 }
