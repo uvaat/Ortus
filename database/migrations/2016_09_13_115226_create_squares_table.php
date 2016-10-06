@@ -34,7 +34,7 @@ class CreateSquaresTable extends Migration
             $table->string('openclose')->nullable();
             $table->string('phone')->nullable();
             $table->string('adress')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
 
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')

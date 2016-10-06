@@ -49,17 +49,22 @@ class SquareController extends Controller
     {
         
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'lat' => 'required',
-            'lng' => 'required',
-            'city' => 'required',
+            'name'   => 'required|max:255',
+            'lat'    => 'required',
+            'lng'    => 'required',
+            'city'   => 'required',
+            'adress' => 'required',
         ]);
 
         $square = new Square();
 
         $square->name = $request->name;
-        $square->lat = $request->lat;
-        $square->lng = $request->lng;
+        $square->lat = str_replace(',', '.', $request->lat);
+        $square->lng = str_replace(',', '.', $request->lng);
+
+        $square->phone = $request->phone;
+        $square->description = $request->description;
+        $square->adress = $request->adress;
 
         $city = City::find($request->city);
         if(!$city){
@@ -171,6 +176,10 @@ class SquareController extends Controller
         $square->name = $request->name;
         $square->lat = str_replace(',', '.', $request->lat);
         $square->lng = str_replace(',', '.', $request->lng);
+
+        $square->phone = $request->phone;
+        $square->description = $request->description;
+        $square->adress = $request->adress;
 
         $square->save();
         $city->squares()->save($square);

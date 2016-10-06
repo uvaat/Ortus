@@ -20,9 +20,9 @@
 #### Square
 
 * [ ] Gestion des horraires d'ouvertures
-* [ ] Téléphone
-* [ ] Adresse
-* [ ] Description
+* [x] Téléphone
+* [x] Adresse
+* [x] Description
 
 #### Amenagement
 

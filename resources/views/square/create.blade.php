@@ -31,12 +31,71 @@
 
 			</div>
 
+			<div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+
+				<label for="lat">téléphone</label>
+				<input type="tel" class="form-control" id="phone" name="phone">
+
+				@if ($errors->has('phone'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('phone') }}</strong>
+                    </span>
+                @endif
+
+			</div>
+
+			<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+
+				<label for="lat">Dèscription</label>
+				<textarea class="form-control" rows="3" id="description" name="description"></textarea>
+
+				@if ($errors->has('description'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('description') }}</strong>
+                    </span>
+                @endif
+
+			</div>
+
+			<hr>
+
+			<div class="form-group{{ $errors->has('adress') ? ' has-error' : '' }}">
+
+				<label for="lat">Adresse</label>
+				<input type="tel" class="form-control" id="adress" name="adress">
+
+				@if ($errors->has('adress'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('adress') }}</strong>
+                    </span>
+                @endif
+
+			</div>
+
+			<div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+
+				<label for="lat">Ville</label><br>
+				
+				<select name="city" id="city" class="selectpicker">
+					@foreach ($cities as $city)
+						<option value="{{$city->id}}">{{$city->name}} } - {{$city->zip}}</option>
+					@endforeach
+				</select>
+
+				@if ($errors->has('city'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('city') }}</strong>
+                    </span>
+                @endif
+
+			</div>
+
 			<div class="form-group{{ $errors->has('lat') ? ' has-error' : '' }}">
 
 				<label for="lat">Latitude</label>
 				<input type="text" class="form-control" id="lat" name="lat">
 
-				@if ($errors->has('name'))
+				@if ($errors->has('lat'))
                     <span class="help-block">
                         <strong>{{ $errors->first('lat') }}</strong>
                     </span>
@@ -49,13 +108,15 @@
 				<label for="lat">Longitude</label>
 				<input type="text" class="form-control" id="lng" name="lng">
 
-				@if ($errors->has('name'))
+				@if ($errors->has('lng'))
                     <span class="help-block">
                         <strong>{{ $errors->first('lng') }}</strong>
                     </span>
                 @endif
 
 			</div>
+
+			<hr>
 
 			<div class="form-group{{ $errors->has('equipments') ? ' has-error' : '' }}">
 				
@@ -70,24 +131,6 @@
 				@if ($errors->has('equipments'))
                     <span class="help-block">
                         <strong>{{ $errors->first('equipments') }}</strong>
-                    </span>
-                @endif
-
-			</div>
-
-			<div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-
-				<label for="lat">Ville</label><br>
-				
-				<select name="city" id="city" class="selectpicker">
-					@foreach ($cities as $city)
-						<option value="{{$city->id}}">{{$city->name}}</option>
-					@endforeach
-				</select>
-
-				@if ($errors->has('city'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('city') }}</strong>
                     </span>
                 @endif
 
