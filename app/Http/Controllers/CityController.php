@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\City;
+use App\Square;
+use App\Crawler\CrawlerLyon;
 
 use App\Http\Requests;
 
@@ -46,6 +48,7 @@ class CityController extends Controller
 
         $city = new City();
         $city->name = ucfirst($request->name);
+        $city->slug = str_slug($city->name, '-');
         $city->zip = $request->zip;
 
         $city->save();
@@ -103,6 +106,7 @@ class CityController extends Controller
         }
 
         $city->name = ucfirst($request->name);
+        $city->slug = str_slug($city->name, '-');
         $city->zip = $request->zip;
 
         $city->save();
@@ -123,4 +127,46 @@ class CityController extends Controller
         City::find($id)->delete();
         return redirect()->back();
     }
+
+    public function crawler(Request $request, $id)
+    {
+        
+        $city = City::find($id);
+        
+        if(!$city){
+
+            $request->session()->flash('error', 'La ville n\'éxiste pas');
+            return redirect()->back();
+
+        }
+
+        if($city->name == 'Lyon'){
+
+            CrawlerLyon::request(function($square) use ($city){
+                
+
+                $isExist = Square::where('slug', '=', str_slug($square->name))->count();
+                if(!$isExist){
+                    
+                    $s = new Square();
+                    $s->name   = $square->name;
+                    $s->slug   = str_slug($s->name);
+                    $s->adress = $square->adress;
+                    $s->lat    = $square->lat;
+                    $s->lng    = $square->lng;
+
+                    $city->squares()->save($s);
+
+                    $s->save();
+                    
+                }
+
+
+            });
+            
+        }
+
+
+    }
+
 }

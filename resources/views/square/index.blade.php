@@ -50,8 +50,8 @@
 		@endforeach
 
 	</table>
-	
-	@if ($squares->hasMorePages())
+
+	@if ($squares->count() > 10)
 		<div class="panel-body">
 			{{ $squares->links() }}
 		</div>

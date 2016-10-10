@@ -24,11 +24,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin::'], f
 	Route::resource('square', 'SquareController');
 
 	/**
-	 * Squares
-	 */
-	Route::get('crawler', 'SquareController@crawler');
-
-	/**
 	 * Villes
 	 */
 	Route::resource('city', 'CityController');
@@ -42,6 +37,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin::'], f
 	 * Équipement
 	 */
 	Route::resource('equipment', 'EquipmentController');
+
+	/**
+	 * Crawler
+	 */
+	Route::get('crawler/{id}', [
+		'as'   => 'crawler', 
+		'uses' => 'CityController@crawler'
+	]);
 
 });
 

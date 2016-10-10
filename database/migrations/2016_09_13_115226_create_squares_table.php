@@ -18,6 +18,7 @@ class CreateSquaresTable extends Migration
 
             $table->increments('id');
             $table->string('name');
+            $table->string('slug');
             $table->string('zip');
 
             $table->softDeletes();
@@ -29,8 +30,9 @@ class CreateSquaresTable extends Migration
 
             $table->increments('id');
             $table->text('name');
-            $table->float('lat');
-            $table->float('lng');
+            $table->string('slug');
+            $table->double('lat', 15, 8);
+            $table->double('lng', 15, 8);
             $table->string('openclose')->nullable();
             $table->string('phone')->nullable();
             $table->string('adress')->nullable();
@@ -50,6 +52,7 @@ class CreateSquaresTable extends Migration
         Schema::create('equipment_types', function (Blueprint $table) {
 
             $table->increments('id');
+            $table->string('slug');
             $table->text('name');
 
             $table->softDeletes();
@@ -60,6 +63,7 @@ class CreateSquaresTable extends Migration
         Schema::create('equipments', function (Blueprint $table) {
 
             $table->increments('id');
+            $table->string('slug');
             $table->text('name');
             $table->integer('equipment_type_id')->unsigned();
             $table->foreign('equipment_type_id')

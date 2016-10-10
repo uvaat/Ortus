@@ -5771,5 +5771,11 @@ button.close {
 
 .table > tbody > tr > td {
   vertical-align: middle; }
+  .table > tbody > tr > td a {
+    padding: 0; }
+
+#map {
+  width: 100%;
+  height: 300px; }
 
 /*# sourceMappingURL=app.css.map */

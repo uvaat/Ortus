@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Square;
 use App\City;
 use App\Equipment;
-use App\library\CrawlerLyon;
 
 use App\Http\Requests;
 
@@ -60,6 +59,7 @@ class SquareController extends Controller
         $square = new Square();
 
         $square->name = $request->name;
+        $square->slug = str_slug($square->name, '-');
         $square->lat = str_replace(',', '.', $request->lat);
         $square->lng = str_replace(',', '.', $request->lng);
 
@@ -175,6 +175,7 @@ class SquareController extends Controller
         }
 
         $square->name = $request->name;
+        $square->slug = str_slug($square->name, '-');
         $square->lat = str_replace(',', '.', $request->lat);
         $square->lng = str_replace(',', '.', $request->lng);
 
@@ -220,13 +221,6 @@ class SquareController extends Controller
     {
         $square = Square::find($id)->delete();
         return redirect()->back();
-    }
-
-    public function crawler()
-    {
-
-        CrawlerLyon::request();
-
     }
 
 }

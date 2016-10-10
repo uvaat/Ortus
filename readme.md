@@ -29,12 +29,11 @@
 * [x] Ajouter l'aménagement
 * [x] CRUD amnégement
 
+#### Commander les crowler
+
+* [x] Lyon
+
 ### V0.3
 
 * [ ] Laisser un commantaire
 * [ ] Noter le square
-
-### V0.4
-
-* [ ] Aller chercher les parcs sur google map
-* [ ] Les enregistrer dans notre base

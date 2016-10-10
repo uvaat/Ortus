@@ -12,5 +12,13 @@
 	margin: 0;
 }
 .table > tbody > tr > td {
-     vertical-align: middle;
+    vertical-align: middle;
+    a{
+		padding: 0;
+    }
+}
+
+#map{
+	width: 100%;
+	height: 300px;
 }

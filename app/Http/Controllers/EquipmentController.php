@@ -57,6 +57,7 @@ class EquipmentController extends Controller
         }
 
         $equipment->name = ucfirst($request->name);
+        $equipment->slug = str_slug($equipment->name, '-');
 
         $equipmentType->equipments()->save($equipment);
 
@@ -124,6 +125,7 @@ class EquipmentController extends Controller
         }
 
         $equipment->name = ucfirst($request->name);
+        $equipment->slug = str_slug($equipment->name, '-');
 
         $equipmentType->equipments()->save($equipment);
 

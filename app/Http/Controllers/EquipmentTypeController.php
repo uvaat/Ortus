@@ -44,6 +44,7 @@ class EquipmentTypeController extends Controller
 
         $equipment = new EquipmentType();
         $equipment->name = ucfirst($request->name);
+        $equipment->slug = str_slug($equipment->name, '-');
 
         $equipment->save();
 
@@ -99,6 +100,7 @@ class EquipmentTypeController extends Controller
         }
 
         $equipment->name = ucfirst($request->name);
+        $equipment->slug = str_slug($equipment->name, '-');
         $equipment->save();
 
         $request->session()->flash('success', 'Le type à bien été modifier');

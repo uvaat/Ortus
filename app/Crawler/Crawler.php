@@ -1,19 +1,10 @@
-<?php 
-namespace App\library;
+<?php
 
-class GoogleGeoCoding
-{
+namespace App\Crawler;
 
-	private $apiKey;
+class Crawler{
 
- 	public function __construct($apiKey){
- 		//AIzaSyDgpW1FNFI5NKLvmehA8pkAACw1vi2YZHo
- 		$this->apiKey = $apiKey;
- 		$this->baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?key' . $this->apiKey;
- 	
- 	}
-
- 	public static function curl($url){
+	public function get($url){
 
 		$options = array( 
 			CURLOPT_CONNECTTIMEOUT => 0,
@@ -40,13 +31,5 @@ class GoogleGeoCoding
 	    return $response;
 
 	}
-
- 	public function getByAdress($adress, $city){
-
- 		$url = $this->baseUrl. '&address=' . urlencode($adress) . ',+' . $city;
- 		return $this->curl($url);
-
- 	}
-
 
 }
