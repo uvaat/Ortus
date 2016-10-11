@@ -37,3 +37,14 @@
 
 * [ ] Laisser un commantaire
 * [ ] Noter le square
+
+---
+
+## Les squares
+
+* Titre
+* Description
+* Adresse
+* Ville - code postal
+* Eccessibilité
+* Equipement (jeux pique-nique ..)

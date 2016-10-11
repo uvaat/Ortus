@@ -27,12 +27,13 @@
 <body>
 
     <div class="container">
-		
-		@if (Auth::guest())
-          	<li><a href="{{ url('/login') }}">Login</a></li>
-        	<li><a href="{{ url('/register') }}">Register</a></li>
-        @endif
+        <div class="row">
 
+            <div class="col-md-12">
+                @yield('content')
+            </div>
+
+        </div>
     </div>
 
     <!-- Scripts -->

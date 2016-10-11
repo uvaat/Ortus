@@ -14,6 +14,15 @@ class CreateSquaresTable extends Migration
     public function up()
     {   
 
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
         Schema::create('cities', function (Blueprint $table) {
 
             $table->increments('id');
@@ -65,7 +74,7 @@ class CreateSquaresTable extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->text('name');
-            $table->integer('equipment_type_id')->unsigned();
+            $table->integer('equipment_type_id')->unsigned()->nullable();
             $table->foreign('equipment_type_id')
                 ->references('id')
                 ->on('equipment_types')
@@ -107,5 +116,6 @@ class CreateSquaresTable extends Migration
         Schema::dropIfExists('equipment_types');
         Schema::dropIfExists('squares');
         Schema::dropIfExists('cities');
+        Schema::drop('users');
     }
 }

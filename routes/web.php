@@ -11,12 +11,17 @@
 |
 */
 
+/**
+ * Home
+ */
+Route::get('/',  'HomeController@index')->name('home');
+
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin::'], function () {
 
 	/**
 	 * Dashbord
 	 */
-	Route::get('/',  'HomeController@index')->name('dashbord');
+	Route::get('/',  'DashbordController@index')->name('dashbord');
 
 	/**
 	 * Squares
